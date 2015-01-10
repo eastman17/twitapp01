@@ -17,6 +17,6 @@ class User < ActiveRecord::Base
   validates :password_confirmation, presence: true, if: :password
 
   def followed_by? user
-    inverse_follows.where(follower_id: user.id).exists?
+    inverse_follows.where(follower_id: user.try(:id)).exists?
   end
 end
